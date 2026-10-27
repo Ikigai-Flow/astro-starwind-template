@@ -1,0 +1,52 @@
+---
+import Menu from "@tabler/icons/outline/menu-2.svg";
+import { Button } from "@/components/starwind/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/starwind/sheet";
+import { siteConfig } from "@/config/site";
+import ThemeToggle from "./ThemeToggle.astro";
+---
+
+<header class="bg-background/80 sticky top-0 z-40 border-b backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <div class="container mx-auto flex h-16 items-center justify-between gap-4 px-4">
+    <a href="/" class="text-lg font-semibold tracking-tight">
+      {siteConfig.name}
+    </a>
+
+    <nav aria-label="Main" class="hidden items-center gap-1 md:flex">
+      {siteConfig.nav.map((item) => (
+        <Button href={item.href} variant="ghost" size="sm">
+          {item.label}
+        </Button>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-1">
+      <ThemeToggle />
+      <Sheet>
+        <SheetTrigger asChild class="md:hidden">
+          <Button variant="ghost" size="icon" aria-label="Open menu">
+            <Menu class="size-5" />
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="right" class="w-72">
+          <SheetHeader>
+            <SheetTitle>{siteConfig.name}</SheetTitle>
+          </SheetHeader>
+          <nav aria-label="Mobile" class="flex flex-col gap-1 px-4">
+            {siteConfig.nav.map((item) => (
+              <Button href={item.href} variant="ghost" class="justify-start">
+                {item.label}
+              </Button>
+            ))}
+          </nav>
+        </SheetContent>
+      </Sheet>
+    </div>
+  </div>
+</header>

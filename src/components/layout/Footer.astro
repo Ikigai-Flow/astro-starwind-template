@@ -1,0 +1,32 @@
+---
+import { Separator } from "@/components/starwind/separator";
+import { siteConfig } from "@/config/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-16">
+  <Separator />
+  <div class="text-muted-foreground container mx-auto flex flex-col gap-4 px-4 py-8 text-sm md:flex-row md:items-center md:justify-between">
+    <p>
+      &copy; {year} {siteConfig.name}. All rights reserved.
+    </p>
+    <nav aria-label="Footer" class="flex flex-wrap gap-4">
+      {siteConfig.nav.map((item) => (
+        <a href={item.href} class="hover:text-foreground transition-colors">
+          {item.label}
+        </a>
+      ))}
+      {siteConfig.social.map((item) => (
+        <a
+          href={item.href}
+          class="hover:text-foreground transition-colors"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</footer>

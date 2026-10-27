@@ -1,0 +1,98 @@
+---
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/starwind/card";
+import { Input } from "@/components/starwind/input";
+import { Label } from "@/components/starwind/label";
+import { Textarea } from "@/components/starwind/textarea";
+import { siteConfig } from "@/config/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// Placeholder content: replace these sections with the client's real content.
+const services = [
+  { title: "Service One", description: "Brief description of the first service." },
+  { title: "Service Two", description: "Brief description of the second service." },
+  { title: "Service Three", description: "Brief description of the third service." },
+];
+---
+
+<BaseLayout>
+  <section class="container mx-auto px-4 py-24 text-center md:py-32">
+    <Badge variant="outline" class="mb-6">
+      Astro + Starwind UI
+    </Badge>
+    <h1 class="mx-auto max-w-3xl text-4xl font-bold tracking-tight text-balance md:text-6xl">
+      {siteConfig.name}
+    </h1>
+    <p class="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg text-pretty">
+      {siteConfig.description}
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <Button href="#contact" size="lg">
+        Get in touch
+      </Button>
+      <Button href="#services" variant="outline" size="lg">
+        Our services
+      </Button>
+    </div>
+  </section>
+
+  <section id="about" class="container mx-auto scroll-mt-20 px-4 py-16">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-3xl font-semibold tracking-tight">About</h2>
+      <p class="text-muted-foreground mt-4 text-lg">
+        Tell the client's story here: who they are, who they serve, and why it matters.
+      </p>
+    </div>
+  </section>
+
+  <section id="services" class="container mx-auto scroll-mt-20 px-4 py-16">
+    <h2 class="text-center text-3xl font-semibold tracking-tight">Services</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {services.map((service) => (
+        <Card>
+          <CardHeader>
+            <CardTitle>{service.title}</CardTitle>
+            <CardDescription>{service.description}</CardDescription>
+          </CardHeader>
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <section id="contact" class="container mx-auto scroll-mt-20 px-4 py-16">
+    <Card class="mx-auto max-w-xl">
+      <CardHeader>
+        <CardTitle>Contact</CardTitle>
+        <CardDescription>
+          Wire this form to the client's form handler (e.g. a form service or API endpoint).
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form class="grid gap-4" method="post" action="#">
+          <div class="grid gap-2">
+            <Label for="name">Name</Label>
+            <Input id="name" name="name" autocomplete="name" required />
+          </div>
+          <div class="grid gap-2">
+            <Label for="email">Email</Label>
+            <Input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="grid gap-2">
+            <Label for="message">Message</Label>
+            <Textarea id="message" name="message" rows={5} required />
+          </div>
+          <Button type="submit" class="w-full">
+            Send message
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  </section>
+</BaseLayout>
